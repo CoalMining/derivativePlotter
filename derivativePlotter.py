@@ -33,12 +33,14 @@ def calcFunction(stringEqn,incrementVal):
 
 def main():
 	incrementVal = 0.001
+
 	if(len(sys.argv)>1):
 		eqn = sys.argv[1]
-	elif(len(sys.argv)>2):
-		incrementVal = sys.argv[2]
 	else:
 		eqn = '4*x**3+5'
+	if(len(sys.argv)>2):
+		incrementVal = float(sys.argv[2])
+
 	calcFunction(eqn,incrementVal)
 
 if __name__=="__main__":
