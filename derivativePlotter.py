@@ -2,9 +2,8 @@ import sys
 from math import *
 import matplotlib.pyplot as plt
 
-incrementVal = 0.001
 
-def findDerivative(xArray,minVal,maxval):
+def findDerivative(xArray,minVal,maxval,incrementVal):
 	last = 0
 	retVal = list()
 	for i in range ((maxval-minVal)-1):
@@ -13,7 +12,7 @@ def findDerivative(xArray,minVal,maxval):
 	retVal.append(last)
 	return retVal
 
-def calcFunction(stringEqn):
+def calcFunction(stringEqn,incrementVal):
 	minVal = -10000
 	maxVal = 10000
 	t = [incrementVal*i for i in range(minVal,maxVal)]
@@ -26,18 +25,21 @@ def calcFunction(stringEqn):
 			print('Please make sure the equation entered is correct')
 			exit(0)
 
-	derVal = findDerivative(xArray,minVal,maxVal)
+	derVal = findDerivative(xArray,minVal,maxVal,incrementVal)
 	plt.plot(t,xArray,label='Original Equation')
 	plt.plot(t,derVal,label='Derivative Equation')
 	plt.legend()
 	plt.show()
 
 def main():
+	incrementVal = 0.001
 	if(len(sys.argv)>1):
 		eqn = sys.argv[1]
+	elif(len(sys.argv)>2):
+		incrementVal = sys.argv[2]
 	else:
 		eqn = '4*x**3+5'
-	calcFunction(eqn)
+	calcFunction(eqn,incrementVal)
 
 if __name__=="__main__":
 	main()
